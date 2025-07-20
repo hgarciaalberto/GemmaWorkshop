@@ -16,7 +16,9 @@ import com.gdgedinburgh.gemmaworkshop.core.navigation.GenerateTextDestination
 import com.gdgedinburgh.gemmaworkshop.core.navigation.SpeechToTextDestination
 import com.gdgedinburgh.gemmaworkshop.core.navigation.SummaryTextDestination
 
-val LIST_ITEMS = listOf(
+typealias NavigateTo = (Destination) -> Unit
+
+val LIST_ITEMS: List<Pair<String, Destination>> = listOf(
     "Generate Text" to GenerateTextDestination,
     "Speech to Text" to SpeechToTextDestination,
     "Summary Text" to SummaryTextDestination,
@@ -24,9 +26,9 @@ val LIST_ITEMS = listOf(
 
 @Composable
 fun HomeScreen(
-    navigateTo: (Destination) -> Unit
+    navigateTo: NavigateTo
 ) {
-    LazyColumn{
+    LazyColumn {
         items(LIST_ITEMS) { item ->
             ListItem(
                 headlineContent = {
@@ -38,7 +40,7 @@ fun HomeScreen(
                         navigateTo(item.second)
                     },
                 colors = ListItemDefaults.colors(
-                    containerColor =MaterialTheme.colorScheme.surfaceContainerHigh
+                    containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
                 )
             )
         }

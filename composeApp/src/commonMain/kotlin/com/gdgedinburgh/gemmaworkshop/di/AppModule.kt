@@ -13,3 +13,5 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
     appDeclaration()
     modules(appModule)
 }
+
+fun initKoinIos() = initKoin {}
