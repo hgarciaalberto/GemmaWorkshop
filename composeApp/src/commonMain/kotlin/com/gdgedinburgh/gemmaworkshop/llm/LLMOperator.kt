@@ -9,8 +9,8 @@ const val MODEL_NAME = "gemma-2b-it-cpu-int4"
 
 const val MODEL_EXTENSION = "bin"
 
-//@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 @Suppress("KotlinNoActualForExpect", "EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+//@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 expect class LLMOperatorFactory {
    fun create(): LLMOperator
 }

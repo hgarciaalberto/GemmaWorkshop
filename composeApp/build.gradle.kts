@@ -79,26 +79,6 @@ kotlin {
             extraOpts += listOf("-compiler-option", "-fmodules")
             linkOnly = true
         }
-
-//        pod("GoogleSignIn") {
-//            extraOpts += listOf("-compiler-option", "-fmodules")
-//        }
-//        pod("Firebase") {
-//            extraOpts += listOf("-compiler-option", "-fmodules")
-//            linkOnly = true
-//        }
-//        pod("FirebaseCore") {
-//            extraOpts += listOf("-compiler-option", "-fmodules")
-//            linkOnly = true
-//        }
-//        pod("FirebaseAuth") {
-//            extraOpts += listOf("-compiler-option", "-fmodules")
-//            linkOnly = true
-//        }
-//        pod("FirebaseFirestore") {
-//            extraOpts += listOf("-compiler-option", "-fmodules")
-//            linkOnly = true
-//        }
     }
 
     sourceSets {

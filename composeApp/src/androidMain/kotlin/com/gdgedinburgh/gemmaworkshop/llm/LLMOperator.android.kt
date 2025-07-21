@@ -11,8 +11,22 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 const val ANDROID_MODEL_FOLDER = "data/local/tmp/llm/"
 
-actual class LLMOperatorFactory(private val context: Context) {
-    actual fun create(): LLMOperator = LLMInferenceAndroidImpl(context)
+@Suppress("KotlinNoActualForExpect", "EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+//@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+actual class LLMOperatorFactory {
+
+    private lateinit var context: Context
+
+    fun initialize(context: Context) {
+        this.context = context
+    }
+
+    actual fun create(): LLMOperator {
+        if (!::context.isInitialized) {
+            throw IllegalStateException("LLMOperatorFactory not initialized")
+        }
+        return LLMInferenceAndroidImpl(context)
+    }
 }
 
 class LLMInferenceAndroidImpl(private val context: Context) : LLMOperator {

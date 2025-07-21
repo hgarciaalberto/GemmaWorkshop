@@ -1,16 +1,27 @@
-package com.gdgedinburgh.gemmaworkshop
+package com.gdgedinburgh.gemmaworkshop.llm
 
-import com.gdgedinburgh.gemmaworkshop.llm.LLMOperator
-import com.gdgedinburgh.gemmaworkshop.llm.MODEL_NAME
 import kotlinx.atomicfu.atomic
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
-//@Suppress("KotlinNoActualForExpect", "EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-actual class LLMOperatorFactory(private val llmInferenceDelegate: LLMOperatorSwift) {
-    actual fun create(): LLMOperator = LLMOperatorIOSImpl(llmInferenceDelegate)
+@Suppress("KotlinNoActualForExpect", "EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+//@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+actual class LLMOperatorFactory  {
+
+    private lateinit var llmInferenceDelegate: LLMOperatorSwift
+
+    fun initialize(llmInferenceDelegate: LLMOperatorSwift) {
+        this.llmInferenceDelegate = llmInferenceDelegate
+    }
+
+    actual fun create(): LLMOperator {
+        if (!::llmInferenceDelegate.isInitialized) {
+            throw IllegalStateException("LLMOperatorFactory not initialized")
+        }
+        return LLMOperatorIOSImpl(llmInferenceDelegate)
+    }
 }
 
 class LLMOperatorIOSImpl(private val delegate: LLMOperatorSwift) : LLMOperator {

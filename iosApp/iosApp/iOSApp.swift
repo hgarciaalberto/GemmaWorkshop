@@ -1,20 +1,16 @@
 import SwiftUI
-import ComposeApp
+import Mediapiper
+import MediaPipeTasksGenAI
+import MediaPipeTasksGenAIC
 
 @main
 struct iOSApp: App {
 
     init() {
-        
-        AppModuleKt.doInitKoinIos()
-
         do {
-            let delegate = try LLMOperatorSwiftImpl() // Instatiate the LLMOperatorSwiftImpl Swift delegate
+            let delegate = LLMOperatorSwiftImpl() // Instatiate the LLMOperatorSwiftImpl Swift delegate
             MainViewControllerKt.onStartup(llmInferenceDelegate: delegate) // Pass the delegate to your shared Kotlin module
-        } catch {
-            // Print any error that occurs during the initialization of the MediaPipe GenAI Task SDK
-            print("Error initializing MediaPipe GenAI Task SDK: \(error)")
-        }
+        } 
     }
 
     var body: some Scene {
@@ -34,7 +30,7 @@ class LLMOperatorSwiftImpl: LLMOperatorSwift {
         let path = Bundle.main.path(forResource: modelName, ofType: "bin")!
         let llmOptions =  LlmInference.Options(modelPath: path)
         llmOptions.maxTokens = 4096
-        llmOptions.temperature = 0.9
+        // llmOptions.temperature = 0.9 // FIXME I don't know why this value is not available in this version
 
         llmInference = try LlmInference(options: llmOptions)
     }

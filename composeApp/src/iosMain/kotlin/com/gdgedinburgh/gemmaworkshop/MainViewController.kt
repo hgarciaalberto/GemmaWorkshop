@@ -2,6 +2,8 @@ package com.gdgedinburgh.gemmaworkshop
 
 import androidx.compose.ui.window.ComposeUIViewController
 import com.gdgedinburgh.gemmaworkshop.di.initKoin
+import com.gdgedinburgh.gemmaworkshop.llm.LLMOperatorFactory
+import com.gdgedinburgh.gemmaworkshop.llm.LLMOperatorSwift
 import org.koin.dsl.module
 
 fun MainViewController() = ComposeUIViewController { App() }
@@ -11,7 +13,10 @@ fun onStartup(llmInferenceDelegate: LLMOperatorSwift) {
         apply {
             modules(module {
                 single {
-                    LLMOperatorFactory(llmInferenceDelegate)
+                    LLMOperatorFactory().apply{
+                        initialize(llmInferenceDelegate)
+                        create()
+                    }
                 }
             })
         }

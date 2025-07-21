@@ -2,6 +2,7 @@ TEAM_ID=
 
 PRODUCT_NAME=GemmaWorkshop
 PRODUCT_BUNDLE_IDENTIFIER=com.gdgedinburgh.gemmaworkshop.GemmaWorkshop
+BUNDLE_ID=com.gdgedinburgh.gemmaworkshop.GemmaWorkshop
 APP_NAME=GemmaWorkshop
 
 CURRENT_PROJECT_VERSION=1

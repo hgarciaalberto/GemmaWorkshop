@@ -20,5 +20,10 @@ class MyApplication : Application() {
 }
 
 val androidModule = module {
-    single { LLMOperatorFactory(androidContext()) }
+    single {
+        LLMOperatorFactory().apply {
+            initialize(androidContext())
+            create()
+        }
+    }
 }

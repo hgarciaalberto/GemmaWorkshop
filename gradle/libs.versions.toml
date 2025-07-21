@@ -19,7 +19,7 @@ koinCompiler = "2.1.0"
 kotlin = "2.2.0"
 ksp = "2.2.0-2.0.2"
 
-mediapipe = "0.10.25"
+mediapipe = "0.10.24"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
