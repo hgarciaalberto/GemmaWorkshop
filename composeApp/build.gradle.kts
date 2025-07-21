@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.cocoapods)
 }
 
 kotlin {
@@ -17,6 +18,14 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
+
+    targets.configureEach {
+        compilations.configureEach {
+            compileTaskProvider.get().compilerOptions {
+                freeCompilerArgs.add("-Xexpect-actual-classes")
+            }
+        }
+    }
     
     listOf(
         iosX64(),
@@ -24,11 +33,74 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ComposeApp"
+            baseName = "Mediapiper"
             isStatic = true
         }
     }
-    
+
+    cocoapods {
+        name = "Mediapiper"
+        summary = "Some description for a Kotlin/Native module"
+        homepage = "Link to a Kotlin/Native module homepage"
+        version = "1.0.0"
+        ios.deploymentTarget = "18"
+        podfile = project.file("../iosApp/Podfile")
+
+        // Optional properties
+        // Configure the Pod name here instead of changing the Gradle project name
+        // name = "MyCocoaPod"
+
+//        framework {
+//            // Required properties
+//            // Framework name configuration. Use this property instead of deprecated 'frameworkName'
+//            baseName = "Mediapiper"
+//
+//            // Optional properties
+//            // Specify the framework linking type. It's dynamic by default.
+//            isStatic = true
+//            // Dependency export
+//            // Uncomment and specify another project module if you have one:
+//            // export(project(":<your other KMP module>"))
+////            transitiveExport = false // This is default.
+//        }
+
+        // Maps custom Xcode configuration to NativeBuildType
+//        xcodeConfigurationToNativeBuildType["CUSTOM_DEBUG"] = NativeBuildType.DEBUG
+//        xcodeConfigurationToNativeBuildType["CUSTOM_RELEASE"] = NativeBuildType.RELEASE
+
+        pod("MediaPipeTasksGenAIC") {
+            version = "0.10.24"
+            extraOpts += listOf("-compiler-option", "-fmodules")
+            linkOnly = true
+        }
+
+        pod("MediaPipeTasksGenAI") {
+            version = "0.10.24"
+            extraOpts += listOf("-compiler-option", "-fmodules")
+            linkOnly = true
+        }
+
+//        pod("GoogleSignIn") {
+//            extraOpts += listOf("-compiler-option", "-fmodules")
+//        }
+//        pod("Firebase") {
+//            extraOpts += listOf("-compiler-option", "-fmodules")
+//            linkOnly = true
+//        }
+//        pod("FirebaseCore") {
+//            extraOpts += listOf("-compiler-option", "-fmodules")
+//            linkOnly = true
+//        }
+//        pod("FirebaseAuth") {
+//            extraOpts += listOf("-compiler-option", "-fmodules")
+//            linkOnly = true
+//        }
+//        pod("FirebaseFirestore") {
+//            extraOpts += listOf("-compiler-option", "-fmodules")
+//            linkOnly = true
+//        }
+    }
+
     sourceSets {
         
         androidMain.dependencies {
@@ -38,6 +110,8 @@ kotlin {
             // Koin
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
+
+            implementation(libs.mediapipe.genai.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
