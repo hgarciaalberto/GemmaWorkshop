@@ -19,18 +19,17 @@ fun NavigationScreen() {
     NavHost(
         navController = navController,
         startDestination = HomeDestination,
-        modifier = Modifier,
     ) {
         composable<HomeDestination> {
-
             HomeScreen(
-                navigateTo = navController::navigate
+                navigateTo = navController::navigate,
             )
         }
 
         composable<GenerateTextDestination> {
             GenerateTextScreen(
-                navigateTo = navController::navigate
+                navigateTo = navController::navigate,
+                navigateUp = navController::navigateUp
             )
         }
 

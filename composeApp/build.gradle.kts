@@ -42,7 +42,7 @@ kotlin {
         name = "Mediapiper"
         summary = "Some description for a Kotlin/Native module"
         homepage = "Link to a Kotlin/Native module homepage"
-        version = "1.0.0"
+        version = "1.0.0.2"
         ios.deploymentTarget = "18"
         podfile = project.file("../iosApp/Podfile")
 
@@ -97,6 +97,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)

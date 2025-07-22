@@ -12,7 +12,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 const val ANDROID_MODEL_FOLDER = "data/local/tmp/llm/"
 
 @Suppress("KotlinNoActualForExpect", "EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-//@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class LLMOperatorFactory {
 
     private lateinit var context: Context
