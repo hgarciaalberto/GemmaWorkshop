@@ -14,16 +14,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import org.koin.android.annotation.KoinViewModel
 
 // 9.
-class ChatViewModel : ViewModel(), KoinComponent {
-
-    @Suppress("UndeclaredKoinUsage")
-    val llmOperator: LLMOperator by inject()
-
-//    private val coroutineScope = MainScope()
+@KoinViewModel
+class ChatViewModel(
+    val llmOperator: LLMOperator,
+) : ViewModel() {
 
     // `GemmaUiState()` is optimized for the Gemma model.
     // Replace `GemmaUiState` with `ChatUiState()` if you're using a different model

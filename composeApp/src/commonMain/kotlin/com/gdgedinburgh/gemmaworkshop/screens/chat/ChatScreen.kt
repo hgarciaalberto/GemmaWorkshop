@@ -36,28 +36,40 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gdgedinburgh.gemmaworkshop.model.ChatMessage
 import com.gdgedinburgh.gemmaworkshop.model.UiState
+import com.gdgedinburgh.gemmaworkshop.screens.LoadingScreen
 import gemmaworkshop.composeapp.generated.resources.Res
 import gemmaworkshop.composeapp.generated.resources.action_send
 import gemmaworkshop.composeapp.generated.resources.chat_label
 import gemmaworkshop.composeapp.generated.resources.model_label
 import gemmaworkshop.composeapp.generated.resources.user_label
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
 
 // 10.
 @Composable
 internal fun ChatRoute(
-    chatViewModel: ChatViewModel = viewModel { ChatViewModel() }
+    chatViewModel: ChatViewModel = koinViewModel(),
 ) {
     val uiState by chatViewModel.uiState.collectAsStateWithLifecycle()
     val textInputEnabled by chatViewModel.isTextInputEnabled.collectAsStateWithLifecycle()
-    ChatScreen(
-        uiState,
-        textInputEnabled
-    ) { message ->
-        chatViewModel.sendMessage(message)
+
+    var showLoading by rememberSaveable { mutableStateOf(true) }
+
+    if (showLoading) {
+        LoadingScreen(
+            llmOperator = chatViewModel.llmOperator,
+            onModelLoaded = {
+                showLoading = false
+            })
+    } else {
+        ChatScreen(
+            uiState,
+            textInputEnabled
+        ) { message ->
+            chatViewModel.sendMessage(message)
+        }
     }
 }
 

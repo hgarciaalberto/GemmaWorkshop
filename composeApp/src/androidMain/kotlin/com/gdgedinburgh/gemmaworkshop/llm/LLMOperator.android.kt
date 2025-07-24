@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import java.io.File
 import java.util.concurrent.atomic.AtomicBoolean
-
-const val ANDROID_MODEL_FOLDER = "data/local/tmp/llm/"
+///data/data/com.gdgedinburgh.gemmaworkshop/cache/gemma3-1b-it-int4.task
+const val ANDROID_MODEL_FOLDER = "/data/data/com.gdgedinburgh.gemmaworkshop/cache/"
 
 @Suppress("KotlinNoActualForExpect", "EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class LLMOperatorFactory {
@@ -43,7 +43,7 @@ class LLMInferenceAndroidImpl(private val context: Context) : LLMOperator {
         }
         return try {
             val modelPath = "$ANDROID_MODEL_FOLDER$MODEL_NAME.$MODEL_EXTENSION"
-            if (File(modelPath).exists().not()) {
+            if (File( modelPath).exists().not()) {
                 return "Model not found at path: $modelPath"
             }
             loadModel(modelPath)

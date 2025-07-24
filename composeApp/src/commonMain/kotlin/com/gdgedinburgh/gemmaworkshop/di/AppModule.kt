@@ -8,7 +8,6 @@ import org.koin.dsl.module
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
     appDeclaration()
-    modules(viewModelsModule)
 }
 
 val viewModelsModule = module {
