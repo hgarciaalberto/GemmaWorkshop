@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.Flow
 // We suppose the extension is always .bin ,
 // so we don't pass it to the program.
 //const val MODEL_NAME = "gemma-2b-it-gpu-int4"
-const val MODEL_NAME = "gemma-2b-it-cpu-int4"
+const val MODEL_NAME = "gemma3-1b-it-int4"
 
-const val MODEL_EXTENSION = "bin"
+const val MODEL_EXTENSION = "task"
 
 @Suppress("KotlinNoActualForExpect", "EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 expect class LLMOperatorFactory {

@@ -21,7 +21,7 @@ fun GenerateTextScreen(
     Scaffold(
         topBar = {
             CustomTopAppBar(
-                title = "Generate Textt",
+                title = "Generate Text",
                 navigateUp = navigateUp
             )
         },

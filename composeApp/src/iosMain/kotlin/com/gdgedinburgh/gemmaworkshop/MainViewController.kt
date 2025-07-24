@@ -22,4 +22,3 @@ fun onStartup(llmInferenceDelegate: LLMOperatorSwift) {
         }
     }
 }
-

@@ -5,6 +5,9 @@ import kotlinx.serialization.Serializable
 interface Destination
 
 @Serializable
+object ChatDestination : Destination
+
+@Serializable
 object HomeDestination : Destination
 
 @Serializable
