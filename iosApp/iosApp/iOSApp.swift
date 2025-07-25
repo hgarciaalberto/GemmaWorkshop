@@ -24,8 +24,6 @@ class LLMOperatorSwiftImpl: LLMOperatorSwift {
 
     let errorTag = "Mediapipe-LLM-Tasks-iOS: "
     var llmInference: LlmInference?
-
-
     func loadModel(modelName: String) async throws {
         let path = Bundle.main.path(forResource: modelName, ofType: "bin")!
         let llmOptions =  LlmInference.Options(modelPath: path)

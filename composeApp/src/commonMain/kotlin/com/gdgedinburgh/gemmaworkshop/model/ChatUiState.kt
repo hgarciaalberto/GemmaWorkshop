@@ -125,4 +125,8 @@ class GemmaUiState(
         _messages.add(chatMessage)
         return chatMessage.id
     }
+
+    fun deleteLastMessage() {
+        _messages.removeAt(_messages.size - 1)
+    }
 }

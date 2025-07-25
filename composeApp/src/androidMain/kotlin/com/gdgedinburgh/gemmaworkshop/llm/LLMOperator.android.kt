@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import java.io.File
 import java.util.concurrent.atomic.AtomicBoolean
-///data/data/com.gdgedinburgh.gemmaworkshop/cache/gemma3-1b-it-int4.task
+
 const val ANDROID_MODEL_FOLDER = "/data/data/com.gdgedinburgh.gemmaworkshop/cache/"
 
 @Suppress("KotlinNoActualForExpect", "EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
@@ -58,12 +58,6 @@ class LLMInferenceAndroidImpl(private val context: Context) : LLMOperator {
         val options = LlmInference.LlmInferenceOptions.builder()
             .setModelPath(modelPath)
             .setMaxTokens(1024)
-//            .setResultListener { partialResult, done ->
-//                // This API design is weird...
-//                // We need to define the result listener in LlmInferenceOptions,
-//                // and later use it with LlmInference#generateResponseAsync(...)
-//                partialResultsFlow.tryEmit(partialResult to done)
-//            }
             .build()
 
         llmInference = LlmInference.createFromOptions(context, options)
