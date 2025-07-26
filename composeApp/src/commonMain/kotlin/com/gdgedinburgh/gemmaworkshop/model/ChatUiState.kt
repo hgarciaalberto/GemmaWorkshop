@@ -81,6 +81,7 @@ class GemmaUiState(
     private val _messages: MutableList<ChatMessage> = messages.toMutableStateList()
     override val messages: List<ChatMessage>
         get() = _messages
+            .toList()
             .map {
                 // Remove the prefix and suffix before showing a message in the UI
                 it.copy(

@@ -25,7 +25,7 @@ class LLMOperatorSwiftImpl: LLMOperatorSwift {
     let errorTag = "Mediapipe-LLM-Tasks-iOS: "
     var llmInference: LlmInference?
     func loadModel(modelName: String) async throws {
-        let path = Bundle.main.path(forResource: modelName, ofType: "bin")!
+        let path = Bundle.main.path(forResource: modelName, ofType: "task")!
         let llmOptions =  LlmInference.Options(modelPath: path)
         llmOptions.maxTokens = 4096
         // llmOptions.temperature = 0.9 // FIXME I don't know why this value is not available in this version

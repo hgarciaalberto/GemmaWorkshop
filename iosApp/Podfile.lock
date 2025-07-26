@@ -1,5 +1,5 @@
 PODS:
-  - Mediapiper (1.0.0.2):
+  - Mediapiper (1.0.0):
     - MediaPipeTasksGenAI (= 0.10.24)
     - MediaPipeTasksGenAIC (= 0.10.24)
   - MediaPipeTasksGenAI (0.10.24):
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../composeApp"
 
 SPEC CHECKSUMS:
-  Mediapiper: 63a121698bd37145cd70174ef7dbdfe70489b94f
+  Mediapiper: 39bb5a51ef3b67218ff14b7ac419d3b10ebed8ec
   MediaPipeTasksGenAI: 076ba7032a6e9da16db9c7cf0c3b67c751c18bc1
   MediaPipeTasksGenAIC: ec35d9f431f6a6b651a0bc9f67a4ed149ffa575c
 

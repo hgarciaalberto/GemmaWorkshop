@@ -42,7 +42,7 @@ kotlin {
         name = "Mediapiper"
         summary = "Some description for a Kotlin/Native module"
         homepage = "Link to a Kotlin/Native module homepage"
-        version = "1.0.0.2"
+        version = "1.0.0"
         ios.deploymentTarget = "18"
         podfile = project.file("../iosApp/Podfile")
 
